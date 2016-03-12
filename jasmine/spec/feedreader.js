@@ -72,9 +72,10 @@ $(function() {
 
     // New Feed Selection, checks if loadFeed changes when new selection occurs
     describe('New Feed Selection', function() {
+    // check if loadFeed (id = 0) matches loadFeed (id = 1)
 
-        // check if loadFeed (id = 0) matches loadFeed (id = 1)
         var feedOne;
+        var feedZero;
 
         // wait for data to load
         beforeEach(function(done) {
@@ -82,17 +83,20 @@ $(function() {
 
                 // assign current feed element to feedOne
                 feedOne = $('.feed').html();
+                console.log(feedOne);
+                done();
+            });
+            loadFeed(0, function() {
+
+                // assign current feed element to feedZero
+                feedZero = $('.feed').html();
+                console.log(feedZero);
                 done();
             });
         });
 
-        it('content changes', function(done) {
-            loadFeed(0, function() {
-
-                // compare feedOne with current feed element to see if they are different
-                expect($('.feed').html()).not.toEqual(feedOne);
-                done();
-            });
+        it('content changes', function() {
+            expect(feedZero).not.toEqual(feedOne);
         });
     });
 
