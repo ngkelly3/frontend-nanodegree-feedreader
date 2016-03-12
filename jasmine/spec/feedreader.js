@@ -52,23 +52,20 @@ $(function() {
     // checks initial entries of feed
     describe('Initial Entries', function() {
 
-        // checks feedList after async function complete for content
-        var feedList = $('.feed-list');
+        // checks container after async function complete for content
+        var feedContainer;
         // wait for data to load
         beforeEach(function(done) {
-            for (i = 0; i < allFeeds.length; i++) {
-                loadFeed(i, function() {
-                    // tests length of allfeeds
-                });
-            }
-            done();
+            loadFeed(0, function() {
+            	feedContainer = $('.feed')
+                // loads one feed element into the container
+                done();
+            });
         });
-        it('at least one entry in feed', function(done) {
-            expect(feedList.length).not.toBe(0);
-            done();
+        it('at least one entry in feed', function() {
+            expect(feedContainer.length).not.toBe(0);
         });
     });
-
 
     // New Feed Selection, checks if loadFeed changes when new selection occurs
     describe('New Feed Selection', function() {
@@ -77,15 +74,18 @@ $(function() {
         var feedOne;
         var feedZero;
 
-        // wait for data to load
+        // wait for data to load, beforeEach for each var
         beforeEach(function(done) {
-            loadFeed(1, function() {
+            loadFeed(0, function() {
 
-                // assign current feed element to feedOne
-                feedOne = $('.feed').html();
-                console.log(feedOne);
+                // assign current feed element to feedZero
+                feedZero = $('.feed').html();
+                console.log(feedZero);
                 done();
             });
+        });
+
+        beforeEach(function(done) {
             loadFeed(0, function() {
 
                 // assign current feed element to feedZero
