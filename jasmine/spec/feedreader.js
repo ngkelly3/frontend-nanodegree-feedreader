@@ -11,18 +11,18 @@ $(function() {
 
         // checks URL content of allFeeds array is defined and not empty
         it('URLs defined', function() {
-            for (var i = 0; i < allFeeds.length; i++) {
-                expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url.length).not.toBe(0);
-            }
+        	allFeeds.forEach(function(feed) {
+        		expect(feed.url).toBeDefined();
+        		expect(feed.url.length).not.toBe(0);
+        	});
         });
 
         // checks names content of allFeeds array is defined and not empty
         it('names defined', function() {
-            for (var i = 0; i < allFeeds.length; i++) {
-                expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name.length).not.toBe(0);
-            }
+            allFeeds.forEach(function(feed) {
+        		expect(feed.name).toBeDefined();
+        		expect(feed.name.length).not.toBe(0);
+        	});
         });
     });
 
@@ -57,7 +57,7 @@ $(function() {
         // wait for data to load
         beforeEach(function(done) {
             loadFeed(0, function() {
-            	feedContainer = $('.feed')
+            	feedContainer = $('.feed');
                 // loads one feed element into the container
                 done();
             });
@@ -80,17 +80,15 @@ $(function() {
 
                 // assign current feed element to feedZero
                 feedZero = $('.feed').html();
-                console.log(feedZero);
                 done();
             });
         });
 
         beforeEach(function(done) {
-            loadFeed(0, function() {
+            loadFeed(1, function() {
 
                 // assign current feed element to feedZero
-                feedZero = $('.feed').html();
-                console.log(feedZero);
+                feedOne = $('.feed').html();
                 done();
             });
         });
